@@ -18,6 +18,7 @@ echo
 
 if ls ~/.ssh/*.pub 2>/dev/null; then
 	echo "public key found in ~/.ssh/id_rsa.pub"
+  echo
 	echo "Make sure to copy the following and add the key to your GitHub account."
 	echo "See https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account"
 	echo
