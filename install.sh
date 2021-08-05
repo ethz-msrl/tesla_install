@@ -132,6 +132,9 @@ wstool update -t $ws_dir/src
 wstool merge ~/tesla_ws/src/Tesla_core/dependencies.rosinstall -t ~/tesla_ws/src
 wstool update -t $ws_dir/src
 
+cd $ws_dir/src/Tesla_core
+pre-commit install
+
 cd $ws_dir
 catkin init
 
