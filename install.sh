@@ -104,7 +104,9 @@ fi
 
 echo
 echo "Getting the repo from GitHub"
-git clone git@github.com:ethz-msrl/Tesla.git $ws_dir/src/Tesla
+echo "I will also pull all LFS data"
+git lfs install
+git lfs clone git@github.com:ethz-msrl/Tesla.git $ws_dir/src/Tesla
 
 echo
 echo "Installing pre-commit hooks"
