@@ -106,7 +106,20 @@ echo
 echo "Getting the repo from GitHub"
 git clone git@github.com:ethz-msrl/Tesla.git $ws_dir/src/Tesla
 
-ws_dir=$HOME/tesla_ws
+echo
+echo "Installing pre-commit hooks"
+if [ "$ROS_DISTRO" == "noetic" ]; then
+pip3 install pre-commit
+elif [ "$ROS_DISTRO" == "melodic" ]; then
+pip install pre-commit
+else
+  echo "Invalid ROS distribution"
+  exit
+fi
+
+cd $ws_dir/src/Tesla
+pre-commit install
+
 if [ ! -f "$ws_dir/src/.rosinstall" ]; then
 	wstool init $ws_dir/src
 fi
@@ -117,7 +130,7 @@ wstool update -t $ws_dir/src
 wstool merge ~/tesla_ws/src/Tesla_core/dependencies.rosinstall -t ~/tesla_ws/src
 wstool update -t $ws_dir/src
 
-cd ~/tesla_ws
+cd $ws_dir
 catkin init
 
 rosdep init
