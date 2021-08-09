@@ -129,10 +129,16 @@ fi
 wstool merge $ws_dir/src/Tesla/dependencies.rosinstall -t $ws_dir/src
 wstool update -t $ws_dir/src
 
-wstool merge ~/tesla_ws/src/Tesla_core/dependencies.rosinstall -t ~/tesla_ws/src
+wstool merge ~/tesla_ws/src/Tesla_core/dependencies.rosinstall -t $ws_dir/src
+wstool update -t $ws_dir/src
+
+wstool merge ~/tesla_ws/src/Navion/dependencies.rosinstall -t $ws_dir/src
 wstool update -t $ws_dir/src
 
 cd $ws_dir/src/Tesla_core
+pre-commit install
+
+cd $ws_dir/src/Navion
 pre-commit install
 
 cd $ws_dir
