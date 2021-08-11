@@ -146,7 +146,7 @@ catkin init
 
 rosdep init
 rosdep update
-#sudo rosdep install --from-paths ~/tesla_ws/src --ignore-src -r -y
+rosdep install --from-paths ~/tesla_ws/src --ignore-src -r -y
 
 echo "Adding source $ws_dir/devel/setup.bash to ~/.bashrc"
 echo
