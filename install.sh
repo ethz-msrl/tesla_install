@@ -164,7 +164,9 @@ if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   catkin build mag_launch
 fi
 
-source $ws_dir/devel/setup.bash
+if [[ -f $ws_dir/devel/setup.bash ]]; then
+    source $ws_dir/devel/setup.bash
+fi
 
 echo
 echo "Done installing Tesla. Have fun!"
