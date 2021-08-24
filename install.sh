@@ -146,7 +146,10 @@ catkin init
 catkin config --extend /opt/ros/$ROS_DISTRO
 catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 
-rosdep init
+if ! rosdep init; then
+   echo "rosdep is already initialized"
+fi
+
 rosdep update
 rosdep install --from-paths ~/tesla_ws/src --ignore-src -r -y
 
