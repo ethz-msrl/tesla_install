@@ -143,6 +143,8 @@ pre-commit install
 
 cd $ws_dir
 catkin init
+catkin config --extend /opt/ros/$ROS_DISTRO
+catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 rosdep init
 rosdep update
