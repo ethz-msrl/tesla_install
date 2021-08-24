@@ -159,9 +159,7 @@ echo "source $ws_dir/devel/setup.bash" >> ~/.bashrc
 
 read -p "The Tesla workspace is ready to go! Shall I compile some packages for you? [y]n " -n 1 -r
 echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Nn]$ ]]; then
-	break	
-else
+if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   echo "Ok... building mag_launch"
   catkin build mag_launch
 fi
