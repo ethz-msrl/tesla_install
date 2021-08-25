@@ -146,7 +146,10 @@ catkin init
 catkin config --extend /opt/ros/$ROS_DISTRO
 catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 
-rosdep init
+if [ ! -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
+    rosdep init
+fi
+
 rosdep update
 rosdep install --from-paths ~/tesla_ws/src --ignore-src -r -y
 
@@ -156,14 +159,14 @@ echo "source $ws_dir/devel/setup.bash" >> ~/.bashrc
 
 read -p "The Tesla workspace is ready to go! Shall I compile some packages for you? [y]n " -n 1 -r
 echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Nn]$ ]]; then
-	break	
-else
+if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   echo "Ok... building mag_launch"
   catkin build mag_launch
 fi
 
-source $ws_dir/devel/setup.bash
+if [[ -f $ws_dir/devel/setup.bash ]]; then
+    source $ws_dir/devel/setup.bash
+fi
 
 echo
 echo "Done installing Tesla. Have fun!"
