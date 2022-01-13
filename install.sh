@@ -147,7 +147,7 @@ catkin config --extend /opt/ros/$ROS_DISTRO
 catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 if [ ! -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
-    rosdep init
+    sudo rosdep init
 fi
 
 rosdep update
