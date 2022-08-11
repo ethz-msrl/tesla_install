@@ -11,7 +11,7 @@ echo "
 echo
 echo "===================================="
 echo "Installation Script v1.0.0    "
-echo "For support contact samuelch@ethz.ch"
+echo "For support contact fheemeyer@ethz.ch"
 echo "===================================="
 echo 
 echo
