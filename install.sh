@@ -17,12 +17,13 @@ echo
 echo
 
 if ls ~/.ssh/*.pub 2>/dev/null; then
-	echo "public key found in ~/.ssh/id_ed25519.pub"
+	KEY_FILE=$(ls ~/.ssh/*.pub | head -1)
+	echo "public key found in ${KEY_FILE}"
   echo
 	echo "Make sure to copy the following and add the key to your GitHub account."
 	echo "See https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account"
 	echo
-	cat ~/.ssh/id_ed25519.pub
+	cat ${KEY_FILE}
 	echo
 	read -p "Press any key to continue"
 else
