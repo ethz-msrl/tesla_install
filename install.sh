@@ -68,7 +68,7 @@ exit
 fi
 
 if [ "$ROS_DISTRO" == "noetic" ]; then
-sudo apt update && sudo apt install -y git python3-catkin-tools python3-osrf-pycommon python3-wstool python3-pip python3-rosdep cython git-lfs swig
+sudo apt update && sudo apt install -y git python3-catkin-tools python3-osrf-pycommon python3-wstool python3-pip python3-rosdep cython git-lfs swig qtquickcontrols2-5-dev
 elif [ "$ROS_DISTRO" == "melodic" ]; then
 sudo apt update && sudo apt install -y git python-catkin-tools swig python-wstool python-pip python-rosdep cython git-lfs
 else
