@@ -174,17 +174,16 @@ if [[ -f ~/tesla_ws/devel/setup.bash ]]; then
 	read -p "Successfully build the packages. Shall I create desktop shortcuts for the Navion and the Cmag fot you? [y]n " -n 1 -r
 	if [[ ! $REPLY =~ ^[Nn]$ ]]; then
 		# Set the path to the scripts
-		TESLA_DESKTOP_PATH="~/tesla_ws/src/Tesla/desktop/install_default_desktop_files.sh"
-		NAVION_DESKTOP_PATH="~/tesla_ws/src/Navion/desktop/install_default_desktop_files.sh"
+		TESLA_DESKTOP_PATH=~/tesla_ws/src/Tesla/desktop/install_default_desktop_files.sh
+		NAVION_DESKTOP_PATH=~/tesla_ws/src/Navion/desktop/install_default_desktop_files.sh
 
 		# Change the mode to executable
-		chmod +x "$TESLA_DESKTOP_PATH"
-		chmod +x "$NAVION_DESKTOP_PATH"
+		chmod +x $TESLA_DESKTOP_PATH
+		chmod +x $NAVION_DESKTOP_PATH
 
 		# Execute the scripts
-		"$SCRIPT_PATH"
-		"$TESLA_DESKTOP_PATH"
-		"$NAVION_DESKTOP_PATH"
+		$TESLA_DESKTOP_PATH
+		$NAVION_DESKTOP_PATH
 		
 		echo "Great! You can now find the shortcuts in your application menu."
 		echo "You can create more shortcuts by executing the scripts in the desktop folders of Tesla and Navion."
