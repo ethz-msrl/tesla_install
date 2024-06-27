@@ -49,32 +49,38 @@ eval `ssh-agent`
 echo "Enter the password that you use in your SSH key"
 ssh-add
 
-if [ ! -d "/opt/ros" ]; then
+## Instsall ROS noetic
+# If ROS is not installed
+if [ ! -d "/opt/ros/noetic" ]; then
   read -p "ROS does not seem to be installed to your system. Should I install it for you? [y]n " -n 1 -r
   echo    # (optional) move to a new line
+  # If user does not want it to be installed
   if [[ $REPLY =~ ^[Nn]$ ]]; then
-		break
-	else
-    sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+		exit 1
+	# if user wanths ros to be installed
+  else
+	sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
     sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
     sudo apt update && sudo apt install -y ros-noetic-desktop-full
-		source /opt/ros/noetic/setup.bash
+	echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
   fi
-fi
-
-if [ -z "$ROS_DISTRO" ]; then
-echo "ROS is not installed or you forgot to run source /opt/ros/<distro>/setup.bash"
-exit
-fi
-
-if [ "$ROS_DISTRO" == "noetic" ]; then
-sudo apt update && sudo apt install -y git python3-catkin-tools python3-osrf-pycommon python3-wstool python3-pip python3-rosdep cython git-lfs swig qtquickcontrols2-5-dev
-elif [ "$ROS_DISTRO" == "melodic" ]; then
-sudo apt update && sudo apt install -y git python-catkin-tools swig python-wstool python-pip python-rosdep cython git-lfs
+# If ROS is installed
 else
-  echo "Invalid ROS distribution"
-  exit
+	# If ROS is installed but not sourced
+	if ! grep -q "source /opt/ros/noetic/setup.bash" ~/.bashrc; then
+		echo "ROS seems to be installed but not sourced. I will add it to your .bashrc for you."
+		echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+	# If ROS is installed and sourced
+	else
+		echo "ROS is already installed and sourced. Continuing.."
+	fi
 fi
+
+# Source bashrc
+source ~/.bashrc
+
+# Install tools
+sudo apt update && sudo apt install -y git python3-catkin-tools python3-osrf-pycommon python3-wstool python3-pip python3-rosdep cython git-lfs swig qtquickcontrols2-5-dev
 
 # Stops the script from stopping due to GitHub not being in the list of known hosts
 if ! grep github.com ~/.ssh/known_hosts > /dev/null
@@ -111,14 +117,7 @@ git lfs clone git@github.com:ethz-msrl/Tesla.git $ws_dir/src/Tesla
 
 echo
 echo "Installing pre-commit hooks"
-if [ "$ROS_DISTRO" == "noetic" ]; then
 pip3 install pre-commit
-elif [ "$ROS_DISTRO" == "melodic" ]; then
-pip install pre-commit
-else
-  echo "Invalid ROS distribution"
-  exit
-fi
 
 cd $ws_dir/src/Tesla
 pre-commit install
