@@ -109,6 +109,24 @@ else
 		fi
 fi
 
+# Install pylon 
+# Source the bashrc to ensure any previous settings are loaded
+
+# URL to your GitHub repository and the relative path to the .deb file
+REPO_SSH_URL="git@github.com:ethz-msrl/ubuntu_installation_guide.git"
+SCRIPT_PATH="scripts/pylon/install_pylon.sh"
+LOCAL_REPO_DIR="/tmp/ubuntu_installation_guide"
+
+# Clone the repository using SSH
+git clone "$REPO_SSH_URL" "$LOCAL_REPO_DIR"
+
+# Execute install script
+sudo chmod +x "$LOCAL_REPO_DIR/$SCRIPT_PATH"
+sudo ./$LOCAL_REPO_DIR/$SCRIPT_PATH
+rm -rf "$LOCAL_REPO_DIR"
+echo "Pylon installation complete."
+source ~/.bashrc
+
 echo
 echo "Getting the repo from GitHub"
 echo "I will also pull all LFS data"
@@ -161,6 +179,7 @@ read -p "The Tesla workspace is ready to go! Shall I compile some packages for y
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   echo "Ok... building mag_launch and nav_launch"
+  catkin build basler_camera --force-cmake
   catkin build mag_launch
   catkin build nav_launch
 fi
