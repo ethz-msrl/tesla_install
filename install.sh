@@ -103,6 +103,24 @@ else
 		fi
 fi
 
+# Install pylon 
+# Source the bashrc to ensure any previous settings are loaded
+
+# URL to your GitHub repository and the relative path to the .deb file
+REPO_SSH_URL="git@github.com:ethz-msrl/ubuntu_installation_guide.git"
+SCRIPT_PATH="scripts/pylon/install_pylon.sh"
+LOCAL_REPO_DIR="/tmp/ubuntu_installation_guide"
+
+# Clone the repository using SSH
+git clone "$REPO_SSH_URL" "$LOCAL_REPO_DIR"
+
+# Execute install script
+sudo chmod +x "$LOCAL_REPO_DIR/$SCRIPT_PATH"
+sudo ./$LOCAL_REPO_DIR/$SCRIPT_PATH
+rm -rf "$LOCAL_REPO_DIR"
+echo "Pylon installation complete."
+source ~/.bashrc
+
 echo
 echo "Getting the repo from GitHub"
 echo "I will also pull all LFS data"
