@@ -180,6 +180,7 @@ read -p "The Tesla workspace is ready to go! Shall I compile some packages for y
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   echo "Ok... building mag_launch and nav_launch"
+  catkin build basler_camera --force-cmake
   catkin build mag_launch
   catkin build nav_launch
 fi
