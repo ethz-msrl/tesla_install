@@ -25,6 +25,8 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts  # This step ensures GitHub's host is known
 
-    - name: Execute Install Script
-      run: bash <(curl -s https://raw.githubusercontent.com/ethz-msrl/tesla_install/main/install.sh)
+    - name: Run Tesla Installation Script
+      run: |
+        chmod +x ./install.sh
+        ./install.sh
 
