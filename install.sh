@@ -1,4 +1,6 @@
 #! /usr/bin/env bash
+set -e
+catkin build test
 
 echo "
 ████████╗███████╗███████╗██╗      █████╗ 
