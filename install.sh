@@ -70,14 +70,12 @@ else
 	if ! grep -q "source /opt/ros/noetic/setup.bash" ~/.bashrc; then
 		echo "ROS seems to be installed but not sourced. I will add it to your .bashrc for you."
 		echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+  	        source /opt/ros/noetic/setup.bash
 	# If ROS is installed and sourced
 	else
 		echo "ROS is already installed and sourced. Continuing.."
 	fi
 fi
-
-# Source bashrc
-source ~/.bashrc
 
 # Install tools
 sudo apt update && sudo apt install -y git python3-catkin-tools python3-osrf-pycommon python3-wstool python3-pip python3-rosdep cython git-lfs swig qtquickcontrols2-5-dev
@@ -125,7 +123,8 @@ sudo chmod +x "$LOCAL_REPO_DIR/$SCRIPT_PATH"
 "$LOCAL_REPO_DIR/$SCRIPT_PATH"
 rm -rf "$LOCAL_REPO_DIR"
 echo "Pylon installation complete."
-source ~/.bashrc
+source /opt/pylon5/bin/pylon-setup-env.sh /opt/pylon5
+
 
 echo
 echo "Getting the repo from GitHub"
@@ -179,8 +178,6 @@ read -p "The Tesla workspace is ready to go! Shall I compile some packages for y
 echo    # (optional) move to a new line
 
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
-  source /opt/ros/noetic/setup.bash
-  source /opt/pylon5/bin/pylon-setup-env.sh /opt/pylon5
   echo "Ok... building mag_launch and nav_launch"
   catkin build basler_camera --force-cmake
   catkin build mag_launch
