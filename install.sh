@@ -1,5 +1,4 @@
 #! /usr/bin/env bash
-set -e
 
 echo "
 ████████╗███████╗███████╗██╗      █████╗ 
@@ -181,9 +180,11 @@ echo    # (optional) move to a new line
 
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   echo "Ok... building mag_launch and nav_launch"
+  set -e
   catkin build basler_camera --force-cmake
   catkin build mag_launch
   catkin build nav_launch
+  set +e
 fi
 
 if [[ -f $ws_dir/devel/setup.bash ]]; then
