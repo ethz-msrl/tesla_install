@@ -122,7 +122,7 @@ git clone "$REPO_SSH_URL" "$LOCAL_REPO_DIR"
 
 # Execute install script
 sudo chmod +x "$LOCAL_REPO_DIR/$SCRIPT_PATH"
-sudo "$LOCAL_REPO_DIR/$SCRIPT_PATH"
+"$LOCAL_REPO_DIR/$SCRIPT_PATH"
 rm -rf "$LOCAL_REPO_DIR"
 echo "Pylon installation complete."
 source ~/.bashrc
