@@ -1,6 +1,12 @@
 name: Install Packages and Run Script on Ubuntu
 
-on: [push, pull_request]  # Triggers the workflow on push or pull request events.
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   setup_and_execute:
