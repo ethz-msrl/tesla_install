@@ -1,0 +1,16 @@
+name: Install Packages on Ubuntu
+
+on: [push, pull_request]  # Triggers the workflow on push or pull request events.
+
+jobs:
+  setup_environment:
+    runs-on: ubuntu-20.04  # Specifies that the job should run on Ubuntu 20.04.
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3  # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it.
+
+    - name: Install Required Packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl git lsb-release  # Installs curl, git, and lsb-release.
