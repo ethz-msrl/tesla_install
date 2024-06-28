@@ -179,6 +179,7 @@ read -p "The Tesla workspace is ready to go! Shall I compile some packages for y
 echo    # (optional) move to a new line
 
 source "$HOME/.bashrc"
+source /opt/pylon5/bin/pylon-setup-env.sh /opt/pylon5
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   echo "Ok... building mag_launch and nav_launch"
   catkin build basler_camera --force-cmake
