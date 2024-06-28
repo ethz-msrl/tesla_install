@@ -177,6 +177,8 @@ echo "source $ws_dir/devel/setup.bash" >> ~/.bashrc
 
 read -p "The Tesla workspace is ready to go! Shall I compile some packages for you? [y]n " -n 1 -r
 echo    # (optional) move to a new line
+
+source "$HOME/.bashrc"
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   echo "Ok... building mag_launch and nav_launch"
   catkin build basler_camera --force-cmake
