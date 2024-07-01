@@ -19,8 +19,7 @@ jobs:
     - name: Install Required Packages
       run: |
         sudo apt-get update
-        sudo apt-get install -y curl git lsb-release tree
-        tree
+        sudo apt-get install -y curl
 
     - name: Setup SSH
       env:
