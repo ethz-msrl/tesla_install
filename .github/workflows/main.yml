@@ -22,8 +22,7 @@ jobs:
         sudo apt-get upgrade
         sudo apt-get install -y curl git lsb-release tree terminator xclip net-tools
         sudo snap install code --classic
-        sudo apt install -y python3-venv
-        sudo reboot        
+        sudo apt install -y python3-venv    
     - name: Setup SSH
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
