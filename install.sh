@@ -80,6 +80,7 @@ fi
 
 # Install tools
 sudo apt update && sudo apt install -y git python3-catkin-tools python3-osrf-pycommon python3-wstool python3-pip python3-rosdep cython git-lfs swig qtquickcontrols2-5-dev
+git lfs install
 
 # Stops the script from stopping due to GitHub not being in the list of known hosts
 if ! grep github.com ~/.ssh/known_hosts > /dev/null
@@ -130,8 +131,9 @@ source /opt/pylon5/bin/pylon-setup-env.sh /opt/pylon5
 echo
 echo "Getting the repo from GitHub"
 echo "I will also pull all LFS data"
-git lfs install
-git lfs clone git@github.com:ethz-msrl/Tesla.git $ws_dir/src/Tesla
+git clone git@github.com:ethz-msrl/Tesla.git $ws_dir/src/Tesla
+cd $ws_dir/src/Tesla
+git lfs pull
 
 echo
 echo "Installing pre-commit hooks"
