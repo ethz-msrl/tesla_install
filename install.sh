@@ -130,8 +130,9 @@ source /opt/pylon5/bin/pylon-setup-env.sh /opt/pylon5
 echo
 echo "Getting the repo from GitHub"
 echo "I will also pull all LFS data"
-git lfs install
-git lfs clone git@github.com:ethz-msrl/Tesla.git $ws_dir/src/Tesla
+git clone git@github.com:ethz-msrl/Tesla.git $ws_dir/src/Tesla
+cd $ws_dir/src/Tesla
+git lfs pull
 
 echo
 echo "Installing pre-commit hooks"
