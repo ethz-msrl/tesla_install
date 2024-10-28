@@ -150,10 +150,10 @@ fi
 wstool merge $ws_dir/src/Tesla/dependencies.rosinstall -t $ws_dir/src
 wstool update -t $ws_dir/src
 
-wstool merge ~/tesla_ws/src/Tesla_core/dependencies.rosinstall -t $ws_dir/src
+wstool merge $ws_dir/src/Tesla_core/dependencies.rosinstall -t $ws_dir/src
 wstool update -t $ws_dir/src
 
-wstool merge ~/tesla_ws/src/Navion/dependencies.rosinstall -t $ws_dir/src
+wstool merge $ws_dir/src/Navion/dependencies.rosinstall -t $ws_dir/src
 wstool update -t $ws_dir/src
 
 cd $ws_dir/src/Tesla_core
@@ -172,7 +172,7 @@ if [ ! -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
 fi
 
 rosdep update
-rosdep install --from-paths ~/tesla_ws/src --ignore-src -r -y
+rosdep install --from-paths $ws_dir/src --ignore-src -r -y
 
 echo "Adding source $ws_dir/devel/setup.bash to ~/.bashrc"
 echo
@@ -194,12 +194,12 @@ if [[ -f $ws_dir/devel/setup.bash ]]; then
     source $ws_dir/devel/setup.bash
 fi
 
-if [[ -f ~/tesla_ws/devel/setup.bash ]]; then    
+if [[ -f $ws_dir/devel/setup.bash ]]; then    
 	read -p "Successfully build the packages. Shall I create desktop shortcuts for the Navion and the Cmag fot you? [y]n " -n 1 -r
 	if [[ ! $REPLY =~ ^[Nn]$ ]]; then
 		# Set the path to the scripts
-		TESLA_DESKTOP_PATH=~/tesla_ws/src/Tesla/desktop/install_default_desktop_files.sh
-		NAVION_DESKTOP_PATH=~/tesla_ws/src/Navion/desktop/install_default_desktop_files.sh
+		TESLA_DESKTOP_PATH=$ws_dir/src/Tesla/desktop/install_default_desktop_files.sh
+		NAVION_DESKTOP_PATH=$ws_dir/src/Navion/desktop/install_default_desktop_files.sh
 
 		# Change the mode to executable
 		chmod +x $TESLA_DESKTOP_PATH
